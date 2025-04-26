@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: control_tower_db
+      POSTGRES_USER: control_tower
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U control_tower -d control_tower_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - '8080:8080'
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/control_tower_db
+      SPRING_DATASOURCE_USERNAME: control_tower
+      SPRING_DATASOURCE_PASSWORD: 1234
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      sh -c "sleep 10 && java -jar app.jar"
+
+volumes:
+  postgres_data:
