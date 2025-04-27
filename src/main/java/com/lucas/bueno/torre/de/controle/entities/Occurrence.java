@@ -13,6 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -90,13 +91,13 @@ public class Occurrence {
     private String occurrenceRunwayDeparture;
 
     @OneToMany(mappedBy = "occurrence", cascade = CascadeType.ALL)
-    private List<OccurrenceType> occurrenceType;
+    private List<OccurrenceType> occurrenceType = new ArrayList<>();
 
     @OneToMany(mappedBy = "occurrence", cascade = CascadeType.ALL)
-    private List<Aircraft> aircrafts;
+    private List<Aircraft> aircrafts = new ArrayList<>();
 
     @OneToMany(mappedBy = "occurrence", cascade = CascadeType.ALL)
-    private List<ContributingFactor> contributingFactors;
+    private List<ContributingFactor> contributingFactors = new ArrayList<>();
 }
 
 
