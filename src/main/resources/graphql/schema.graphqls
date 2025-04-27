@@ -1,0 +1,117 @@
+type OccurrenceDTO {
+    occurrenceCode: ID
+    occurrenceClassification: OccurrenceClassification
+    occurrenceLatitude: String
+    occurrenceLongitude: String
+    occurrenceCity: String
+    occurrenceState: StatesEnum
+    occurrenceCountry: CountryEnum
+    occurrenceAerodrome: String
+    occurrenceDate: String
+    occurrenceTime: String
+    investigationAircraftCleared: String
+    investigationStatusEnum: InvestigationStatusEnum
+    disclosureReportNumber: String
+    disclosureReportPublished: String
+    disclosurePublicationDay: String
+    totalAircraftInvolved: Int
+    occurrenceRunwayDeparture: String
+    occurrenceTypes: [OccurrenceTypeDTO]
+    aircraft: [AircraftDTO]
+    contributingFactors: [ContributingFactorDTO]
+}
+
+
+type OccurrenceTypeDTO {
+    id: ID
+    occurrenceCode:Float
+    occurrenceType:String
+    occurrenceTypeCategory:String
+    taxonomyIcaoType:String
+}
+
+type AircraftDTO {
+    id:ID
+    occurrenceCode:Float
+    categoryOperator: String
+    vehicleType: String
+    manufacturer: String
+    model:String
+    icaoType:String
+    engineType:String
+    engineQuantity:String
+    aircraftPmd:Float
+    aircraftPmdCategory:Float
+    aircraftSeats:Int
+    fabricationYear:Int
+    manufacturingCountry:String
+    registerCountry:String
+    registerSegment:String
+    originFlight:String
+    destinationFlight:String
+    operationPhase:String
+    operationType:String
+    damageLevel:String
+    totalFatalities:Int
+}
+
+type ContributingFactorDTO {
+    id:ID
+    occurrenceCode:Float
+    nameFactor:String
+    aspectFactor:String
+    conditioningFactor:String
+    areaFactor:String
+}
+
+enum InvestigationStatusEnum {
+    ATIVA
+    FINALIZADA
+    NULL
+}
+
+enum CountryEnum {
+    BRASIL
+    UNIDENTIFIED
+}
+
+enum StatesEnum {
+    AC
+    AL
+    AP
+    AM
+    BA
+    CE
+    DF
+    ES
+    GO
+    MA
+    MT
+    MS
+    MG
+    PA
+    PB
+    PR
+    PE
+    PI
+    RJ
+    RN
+    RS
+    RO
+    RR
+    SC
+    SP
+    SE
+    TO
+    UNIDENTIFIED
+}
+
+enum OccurrenceClassification {
+    ACIDENTE
+    INCIDENTE
+    INCIDENTE_GRAVE
+}
+
+type Query {
+    getOccurrenceById(id: ID!): OccurrenceDTO
+}
