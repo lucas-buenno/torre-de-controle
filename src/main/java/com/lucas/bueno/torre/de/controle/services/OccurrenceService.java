@@ -1,9 +1,6 @@
 package com.lucas.bueno.torre.de.controle.services;
 
-import com.lucas.bueno.torre.de.controle.controllers.dto.AircraftDTO;
-import com.lucas.bueno.torre.de.controle.controllers.dto.ContributingFactorDTO;
-import com.lucas.bueno.torre.de.controle.controllers.dto.OccurrenceDTO;
-import com.lucas.bueno.torre.de.controle.controllers.dto.OccurrenceTypeDTO;
+import com.lucas.bueno.torre.de.controle.controllers.dto.*;
 import com.lucas.bueno.torre.de.controle.entities.Aircraft;
 import com.lucas.bueno.torre.de.controle.entities.ContributingFactor;
 import com.lucas.bueno.torre.de.controle.entities.Occurrence;
@@ -25,7 +22,7 @@ import java.util.stream.Collectors;
 public class OccurrenceService {
 
     private final OccurrenceRepository occurrenceRepository;
-
+    private static final int LAST_OCCURRENCES_LIMIT = 100;
 
     public OccurrenceDTO getOccurrenceById(Long id) {
 
@@ -64,6 +61,41 @@ public class OccurrenceService {
         }).toList();
 
         return new PageImpl<>(occurrencesDTO, pageRequest, getOccurrencesEntityPaginated.getTotalElements());
+    }
+
+    public List<LatestOccurrencesDTO> getLatestOccurrences(Integer lastOccurrencesQuantity) {
+
+        if (lastOccurrencesQuantity > 100) {
+            lastOccurrencesQuantity = LAST_OCCURRENCES_LIMIT;
+        }
+
+        var pageNumber = 0;
+        var pageSize = lastOccurrencesQuantity;
+        var sortBy = "occurrenceDate";
+        var direction = Sort.Direction.DESC;
+
+        return getAllOccurrences(pageNumber, pageSize, sortBy, direction.name())
+                .stream().limit(lastOccurrencesQuantity)
+                .map(occurrenceDTO -> toLatestOccurrencesDTO(occurrenceDTO)).toList();
+
+    }
+
+    private LatestOccurrencesDTO toLatestOccurrencesDTO(OccurrenceDTO dto) {
+        var hasFatalities = existsFatalitiesInAircraft(dto.aircraft());
+        return LatestOccurrencesDTO.builder()
+                .occurrenceClassification(dto.occurrenceClassification())
+                .occurrenceCode(dto.occurrenceCode())
+                .occurrenceTypes(dto.occurrenceTypes())
+                .occurrenceDate(dto.occurrenceDate())
+                .totalAircraftInvolved(dto.totalAircraftInvolved())
+                .occurrenceState(dto.occurrenceState())
+                .city(dto.occurrenceCity())
+                .hasFatalities(hasFatalities)
+                .build();
+    }
+
+    private boolean existsFatalitiesInAircraft(List<AircraftDTO> aircraft) {
+        return aircraft.stream().anyMatch(aircraftDTO -> aircraftDTO.totalFatalities() > 0);
     }
 
     private static OccurrenceDTO toBuildOccurrenceDTO(Occurrence occurrenceEntity, List<OccurrenceTypeDTO> occurrenceTypesDTO, List<AircraftDTO> aircraftDto, List<ContributingFactorDTO> contributingFactorsDTO) {

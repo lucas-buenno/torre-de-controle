@@ -1,6 +1,7 @@
 package com.lucas.bueno.torre.de.controle.controllers;
 
 import com.lucas.bueno.torre.de.controle.controllers.dto.ApiResponse;
+import com.lucas.bueno.torre.de.controle.controllers.dto.LatestOccurrencesDTO;
 import com.lucas.bueno.torre.de.controle.controllers.dto.OccurrenceDTO;
 import com.lucas.bueno.torre.de.controle.controllers.dto.PaginationResponse;
 import com.lucas.bueno.torre.de.controle.services.OccurrenceService;
@@ -10,6 +11,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import static java.util.Objects.isNull;
@@ -39,6 +41,11 @@ public class OccurrenceController {
                 response.getSize(),
                 response.getTotalElements(),
                 response.getTotalPages()));
+    }
+
+    @QueryMapping
+    public List<LatestOccurrencesDTO> getLatestOccurrences(@Argument Integer lastOccurrencesQuantity) {
+        return occurrenceService.getLatestOccurrences(lastOccurrencesQuantity);
     }
 
 }
