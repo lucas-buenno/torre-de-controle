@@ -112,6 +112,20 @@ enum OccurrenceClassification {
     INCIDENTE_GRAVE
 }
 
+type ApiResponse {
+    content:[OccurrenceDTO]
+    paginationResponse: PaginationResponse
+}
+
+type PaginationResponse {
+    pageNumber:Int
+    pageSize:Int
+    totalElements:Float
+    totalPages: Int
+}
+
 type Query {
     getOccurrenceById(id: ID!): OccurrenceDTO
+    getAllOccurrences(pageNumber:Int!, pageSize: Int!, sortBy:String!, sortDirection:String!): ApiResponse
 }
+
