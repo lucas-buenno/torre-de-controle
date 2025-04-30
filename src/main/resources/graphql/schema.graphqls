@@ -35,6 +35,7 @@ type AircraftDTO {
     occurrenceCode:Float
     categoryOperator: String
     vehicleType: String
+    aircraftRegistration:String
     manufacturer: String
     model:String
     icaoType:String
@@ -135,9 +136,22 @@ type LatestOccurrencesDTO {
     hasFatalities:Boolean
 }
 
+input OccurrenceQueryFilter {
+    classification: String
+    state:StatesEnum
+    city:String
+    occurrenceYear:Int
+    hasFatalities:Boolean
+    vehicleType:String
+    engineType:String
+    engineQuantity:String
+    damageLevel:String
+}
+
+
 type Query {
     getOccurrenceById(id: ID!): OccurrenceDTO
-    getAllOccurrences(pageNumber:Int!, pageSize: Int!, sortBy:String!, sortDirection:String!): ApiResponse
+    getAllOccurrences(pageNumber:Int!, pageSize: Int!, sortBy:String!, sortDirection:String!, filter:OccurrenceQueryFilter): ApiResponse
     getLatestOccurrences(lastOccurrencesQuantity:Int!): [LatestOccurrencesDTO]
 }
 
