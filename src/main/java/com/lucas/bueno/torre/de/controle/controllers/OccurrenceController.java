@@ -4,6 +4,7 @@ import com.lucas.bueno.torre.de.controle.controllers.dto.ApiResponse;
 import com.lucas.bueno.torre.de.controle.controllers.dto.LatestOccurrencesDTO;
 import com.lucas.bueno.torre.de.controle.controllers.dto.OccurrenceDTO;
 import com.lucas.bueno.torre.de.controle.controllers.dto.PaginationResponse;
+import com.lucas.bueno.torre.de.controle.controllers.queryFilters.OccurrenceQueryFilter;
 import com.lucas.bueno.torre.de.controle.services.OccurrenceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -33,8 +34,14 @@ public class OccurrenceController {
     public ApiResponse<OccurrenceDTO> getAllOccurrences(@Argument Integer pageNumber,
                                                         @Argument Integer pageSize,
                                                         @Argument String sortBy,
-                                                        @Argument String sortDirection) {
-        var response = occurrenceService.getAllOccurrences(pageNumber, pageSize, sortBy, sortDirection);
+                                                        @Argument String sortDirection,
+                                                        @Argument OccurrenceQueryFilter filter) {
+
+        if (filter == null) {
+            filter = new OccurrenceQueryFilter();
+        }
+
+        var response = occurrenceService.getAllOccurrences(pageNumber, pageSize, sortBy, sortDirection, filter);
 
         return new ApiResponse<>(response.getContent(),
                 new PaginationResponse(response.getNumber(),
