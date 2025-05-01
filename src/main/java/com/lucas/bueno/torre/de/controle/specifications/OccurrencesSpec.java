@@ -1,6 +1,7 @@
 package com.lucas.bueno.torre.de.controle.specifications;
 
 import com.lucas.bueno.torre.de.controle.entities.Occurrence;
+import com.lucas.bueno.torre.de.controle.entities.enums.DamageLevelEnum;
 import com.lucas.bueno.torre.de.controle.entities.enums.OccurrenceClassification;
 import com.lucas.bueno.torre.de.controle.entities.enums.StatesEnum;
 
@@ -103,14 +104,12 @@ public class OccurrencesSpec {
         };
     }
 
-    public static Specification<Occurrence> damageLevelEquals(String damageLevel) {
+    public static Specification<Occurrence> damageLevelEquals(DamageLevelEnum damageLevel) {
         return (root, query, builder) -> {
             if (damageLevel == null) {
                 return builder.conjunction();
             }
-            return builder.equal(builder.upper(
-                    root.join("aircrafts").get("damageLevel")),
-                    damageLevel.toUpperCase()
+            return builder.equal(root.join("aircrafts").get("damageLevel"), damageLevel
             );
         };
     }
