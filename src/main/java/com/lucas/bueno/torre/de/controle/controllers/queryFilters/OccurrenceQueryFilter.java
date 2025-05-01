@@ -1,6 +1,7 @@
 package com.lucas.bueno.torre.de.controle.controllers.queryFilters;
 
 import com.lucas.bueno.torre.de.controle.entities.Occurrence;
+import com.lucas.bueno.torre.de.controle.entities.enums.DamageLevelEnum;
 import com.lucas.bueno.torre.de.controle.entities.enums.OccurrenceClassification;
 import com.lucas.bueno.torre.de.controle.entities.enums.StatesEnum;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class OccurrenceQueryFilter {
     private String vehicleType;
     private String engineType;
     private String engineQuantity;
-    private String damageLevel;
+    private DamageLevelEnum damageLevel;
 
     public Specification<Occurrence> toSpecification() {
         return occurrenceClassificationEqual(classification)

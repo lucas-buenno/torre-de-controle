@@ -1,5 +1,6 @@
 package com.lucas.bueno.torre.de.controle.entities;
 
+import com.lucas.bueno.torre.de.controle.entities.enums.DamageLevelEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -85,7 +86,8 @@ public class Aircraft {
     private String operationType;
 
     @Column(name = "aeronave_nivel_dano")
-    private String damageLevel;
+    @Enumerated(EnumType.STRING)
+    private DamageLevelEnum damageLevel;
 
     @Column(name = "aeronave_fatalidades_total")
     private Integer totalFatalities;

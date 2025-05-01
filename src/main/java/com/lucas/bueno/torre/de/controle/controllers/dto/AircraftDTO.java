@@ -1,5 +1,6 @@
 package com.lucas.bueno.torre.de.controle.controllers.dto;
 
+import com.lucas.bueno.torre.de.controle.entities.enums.DamageLevelEnum;
 import lombok.Builder;
 
 import java.util.UUID;
@@ -25,6 +26,6 @@ public record AircraftDTO(UUID id,
                           String destinationFlight,
                           String operationPhase,
                           String operationType,
-                          String damageLevel,
+                          DamageLevelEnum damageLevel,
                           Integer totalFatalities) {
 }
