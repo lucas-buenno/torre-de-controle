@@ -7,10 +7,13 @@ import com.lucas.bueno.torre.de.controle.controllers.dto.PaginationResponse;
 import com.lucas.bueno.torre.de.controle.controllers.queryFilters.OccurrenceQueryFilter;
 import com.lucas.bueno.torre.de.controle.services.OccurrenceService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,13 +22,18 @@ import static java.util.Objects.isNull;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class OccurrenceController {
 
     private final OccurrenceService occurrenceService;
 
     @QueryMapping
     public OccurrenceDTO getOccurrenceById(@Argument String id) {
+        //String correlationId = MDC.get("X-Correlation-ID");
+        //log.info("[CID: {}] Buscando ocorrência com id: {}", correlationId, id);
         Long occurrenceId = Long.parseLong(id);
+
+        //log.debug("[CID: {}] Ocorrência encontrada", correlationId);
         return occurrenceService.getOccurrenceById(occurrenceId);
     }
 
@@ -43,6 +51,7 @@ public class OccurrenceController {
 
         var response = occurrenceService.getAllOccurrences(pageNumber, pageSize, sortBy, sortDirection, filter);
 
+        log.debug("TESTANDO");
         return new ApiResponse<>(response.getContent(),
                 new PaginationResponse(response.getNumber(),
                 response.getSize(),

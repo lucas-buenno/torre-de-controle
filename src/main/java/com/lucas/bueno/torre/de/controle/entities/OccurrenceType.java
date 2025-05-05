@@ -1,9 +1,6 @@
 package com.lucas.bueno.torre.de.controle.entities;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -11,7 +8,8 @@ import java.util.UUID;
 @Table(name = "occurrence_type_db")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class OccurrenceType {
 

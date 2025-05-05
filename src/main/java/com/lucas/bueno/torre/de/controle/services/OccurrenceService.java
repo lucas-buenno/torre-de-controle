@@ -15,9 +15,12 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.util.Objects.isNull;
 
 /**
  * Serviço responsável por manipular as ocorrências de incidentes envolvendo aeronaves.
@@ -75,6 +78,10 @@ public class OccurrenceService {
 
         if (!sortDirection.equalsIgnoreCase("DESC")) {
             direction = Sort.Direction.ASC;
+        }
+
+        if(isNull(sortBy)) {
+            sortBy = "occurrenceDate";
         }
 
         var pageRequest = PageRequest.of(pageNumber, pageSize, direction, sortBy);

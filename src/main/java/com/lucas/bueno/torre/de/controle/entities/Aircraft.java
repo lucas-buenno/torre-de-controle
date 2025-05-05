@@ -2,10 +2,7 @@ package com.lucas.bueno.torre.de.controle.entities;
 
 import com.lucas.bueno.torre.de.controle.entities.enums.DamageLevelEnum;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -13,7 +10,8 @@ import java.util.UUID;
 @Table(name = "aircraft_db")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class Aircraft {
 
