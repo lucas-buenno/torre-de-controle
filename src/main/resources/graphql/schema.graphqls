@@ -142,7 +142,7 @@ input OccurrenceQueryFilter {
     city:String
     occurrenceYear:Int
     hasFatalities:Boolean
-    vehicleType:String
+    vehicleType:[String]
     engineType:String
     engineQuantity:String
     damageLevel:DamageLevelEnum
@@ -159,7 +159,7 @@ enum DamageLevelEnum {
 
 type Query {
     getOccurrenceById(id: ID!): OccurrenceDTO
-    getAllOccurrences(pageNumber:Int!, pageSize: Int!, sortBy:String!, sortDirection:String!, filter:OccurrenceQueryFilter): ApiResponse
+    getAllOccurrences(pageNumber:Int!, pageSize: Int!, sortBy:String, sortDirection:String, filter:OccurrenceQueryFilter): ApiResponse
     getLatestOccurrences(lastOccurrencesQuantity:Int!): [LatestOccurrencesDTO]
 }
 
