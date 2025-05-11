@@ -1,5 +1,6 @@
 package com.lucas.bueno.torre.de.controle.controllers.dto;
 
+import com.lucas.bueno.torre.de.controle.entities.OccurrenceType;
 import lombok.Builder;
 
 import java.util.UUID;
@@ -9,4 +10,14 @@ public record OccurrenceTypeDTO(UUID id,
                                 String occurrenceType,
                                 String occurrenceTypeCategory,
                                 String taxonomyIcaoType) {
+
+    public static OccurrenceTypeDTO fromDomain(OccurrenceType entity) {
+        return OccurrenceTypeDTO.builder()
+                .id(entity.getId())
+                .occurrenceCode(entity.getOccurrenceCode())
+                .occurrenceType(entity.getOccurrenceType())
+                .occurrenceTypeCategory(entity.getOccurrenceTypeCategory())
+                .taxonomyIcaoType(entity.getTaxonomyIcaoType())
+                .build();
+    }
 }

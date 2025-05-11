@@ -6,6 +6,9 @@ import com.lucas.bueno.torre.de.controle.entities.enums.OccurrenceClassification
 import com.lucas.bueno.torre.de.controle.entities.enums.StatesEnum;
 import lombok.Data;
 import org.springframework.data.jpa.domain.Specification;
+
+import java.util.List;
+
 import static com.lucas.bueno.torre.de.controle.specifications.OccurrencesSpec.*;
 
 @Data
@@ -16,7 +19,7 @@ public class OccurrenceQueryFilter {
     private String city;
     private Integer occurrenceYear;
     private Boolean hasFatalities;
-    private String vehicleType;
+    private List<String> vehicleType;
     private String engineType;
     private String engineQuantity;
     private DamageLevelEnum damageLevel;
