@@ -7,14 +7,14 @@ import lombok.Builder;
 import java.time.LocalDate;
 import java.util.List;
 
-@Builder
-public record LatestOccurrencesDTO(OccurrenceClassification occurrenceClassification,
-                                   Long occurrenceCode,
-                                   List<OccurrenceTypeDTO> occurrenceTypes,
-                                   LocalDate occurrenceDate,
-                                   Integer totalAircraftInvolved,
-                                   StatesEnum occurrenceState,
-                                   String city,
-                                   boolean hasFatalities
-                                   ) {
-}
+//@Builder
+//public record LatestOccurrencesDTO(OccurrenceClassification occurrenceClassification,
+//                                   Long occurrenceCode,
+//                                   List<OccurrenceTypeDTO> occurrenceTypes,
+//                                   LocalDate occurrenceDate,
+//                                   Integer totalAircraftInvolved,
+//                                   StatesEnum occurrenceState,
+//                                   String city,
+//                                   boolean hasFatalities
+//                                   ) {
+//}

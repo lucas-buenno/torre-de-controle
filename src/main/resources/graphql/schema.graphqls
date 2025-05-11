@@ -125,16 +125,6 @@ type PaginationResponse {
     totalPages: Int
 }
 
-type LatestOccurrencesDTO {
-    occurrenceClassification:OccurrenceClassification
-    occurrenceCode: ID
-    occurrenceTypes:[OccurrenceTypeDTO]
-    occurrenceDate: String
-    totalAircraftInvolved:Int
-    occurrenceState:StatesEnum
-    city:String
-    hasFatalities:Boolean
-}
 
 input OccurrenceQueryFilter {
     classification: OccurrenceClassification
@@ -160,6 +150,5 @@ enum DamageLevelEnum {
 type Query {
     getOccurrenceById(id: ID!): OccurrenceDTO
     getAllOccurrences(pageNumber:Int!, pageSize: Int!, sortBy:String, sortDirection:String, filter:OccurrenceQueryFilter): ApiResponse
-    getLatestOccurrences(lastOccurrencesQuantity:Int!): [LatestOccurrencesDTO]
 }
 
