@@ -51,7 +51,7 @@ public class OccurrenceService {
         var contributingFactorsDTO = getContributingFactorDTO(occurrenceEntity.getContributingFactors());
 
         // Retorna a ocorrência convertida para DTO
-        return OccurrenceResponseDTO.fromDomain(occurrenceEntity, occurrenceTypesDTO, aircraftDto, contributingFactorsDTO);
+        return OccurrenceResponseDTO.fromEntity(occurrenceEntity, occurrenceTypesDTO, aircraftDto, contributingFactorsDTO);
     }
 
 
@@ -111,7 +111,7 @@ public class OccurrenceService {
             var contributingFactorsDTO = getContributingFactorDTO(occurrenceEntity.getContributingFactors());
 
             // Retorna o DTO correspondente à ocorrência
-            return OccurrenceResponseDTO.fromDomain(occurrenceEntity, occurrenceTypesDTO, aircraftDto, contributingFactorsDTO);
+            return OccurrenceResponseDTO.fromEntity(occurrenceEntity, occurrenceTypesDTO, aircraftDto, contributingFactorsDTO);
         }).toList();
     }
 
@@ -181,7 +181,7 @@ public class OccurrenceService {
      * @return Lista de DTOs de fatores contribuintes.
      */
     private List<ContributingFactorDTO> getContributingFactorDTO(List<ContributingFactor> contributingFactors) {
-        return contributingFactors.stream().map(ContributingFactorDTO::fromDomain).toList();
+        return contributingFactors.stream().map(ContributingFactorDTO::fromEntity).toList();
     }
 
 
@@ -193,7 +193,7 @@ public class OccurrenceService {
      * @return Lista de DTOs de aeronaves.
      */
     private List<AircraftDTO> getAircraftDTO(List<Aircraft> aircraft) {
-        return aircraft.stream().map(AircraftDTO::fromDomain).toList();
+        return aircraft.stream().map(AircraftDTO::fromEntity).toList();
     }
 
 
@@ -204,7 +204,7 @@ public class OccurrenceService {
      * @return Lista de DTOs de tipos de ocorrência.
      */
     private List<OccurrenceTypeDTO> getOccurrenceTypesDTO(List<OccurrenceType> entity) {
-         return entity.stream().map(OccurrenceTypeDTO::fromDomain).toList();
+         return entity.stream().map(OccurrenceTypeDTO::fromEntity).toList();
     }
 
 
