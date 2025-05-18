@@ -14,7 +14,7 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/graphql")
                         .allowedOrigins(
-                                "https://torre-de-controle-front.vercel.app/", // Seu frontend
+                                "https://torre-de-controle-front.vercel.app", // Seu frontend
                                 "http://localhost:3000",
                                 "http://localhost:8081"// Ou outra porta do frontend
                         )
