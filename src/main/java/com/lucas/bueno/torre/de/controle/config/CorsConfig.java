@@ -13,7 +13,7 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/graphql")
+                registry.addMapping("/**")
                         .allowedOrigins(
                                 "https://torre-de-controle-front.vercel.app",
                                 "http://localhost:3000",
@@ -22,11 +22,6 @@ public class CorsConfig {
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
-
-                registry.addMapping("/graphiql")
-                        .allowedOrigins()
-                        .allowedMethods()
-                        .maxAge(0);
             }
         };
     }
