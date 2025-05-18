@@ -26,10 +26,7 @@ import java.util.UUID;
 @Table(name = "occurrence_db")
 public class Occurrence {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "id")
-//    private UUID id;
+
     @Id
     @Column(name = "codigo_ocorrencia")
     private Long occurrenceCode;
