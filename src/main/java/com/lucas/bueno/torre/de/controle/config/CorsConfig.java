@@ -13,7 +13,7 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
+                registry.addMapping("/graphql")
                         .allowedOrigins(
                                 "https://torre-de-controle-front.vercel.app",
                                 "http://localhost:3000",
