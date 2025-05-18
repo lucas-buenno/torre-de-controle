@@ -30,7 +30,7 @@ public record AircraftDTO(UUID id,
                           DamageLevelEnum damageLevel,
                           Integer totalFatalities) {
 
-    public static AircraftDTO fromDomain(Aircraft entity) {
+    public static AircraftDTO fromEntity(Aircraft entity) {
         return AircraftDTO.builder()
                 .id(entity.getId())
                 .occurrenceCode(entity.getOccurrenceCode())

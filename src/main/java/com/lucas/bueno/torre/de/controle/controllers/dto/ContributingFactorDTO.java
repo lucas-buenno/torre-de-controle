@@ -12,7 +12,7 @@ public record ContributingFactorDTO(UUID id,
                                     String conditioningFactor,
                                     String areaFactor) {
 
-    public static ContributingFactorDTO fromDomain(ContributingFactor entity) {
+    public static ContributingFactorDTO fromEntity(ContributingFactor entity) {
         return ContributingFactorDTO.builder()
                 .id(entity.getId())
                 .occurrenceCode(entity.getOccurrenceCode())

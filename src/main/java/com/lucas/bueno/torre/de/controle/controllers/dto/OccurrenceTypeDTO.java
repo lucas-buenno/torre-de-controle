@@ -11,7 +11,7 @@ public record OccurrenceTypeDTO(UUID id,
                                 String occurrenceTypeCategory,
                                 String taxonomyIcaoType) {
 
-    public static OccurrenceTypeDTO fromDomain(OccurrenceType entity) {
+    public static OccurrenceTypeDTO fromEntity(OccurrenceType entity) {
         return OccurrenceTypeDTO.builder()
                 .id(entity.getId())
                 .occurrenceCode(entity.getOccurrenceCode())

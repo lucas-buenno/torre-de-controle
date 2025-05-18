@@ -35,7 +35,7 @@ public record OccurrenceResponseDTO(Long occurrenceCode,
                                     List<ContributingFactorDTO> contributingFactors) {
 
 
-    public static OccurrenceResponseDTO fromDomain(Occurrence entity,
+    public static OccurrenceResponseDTO fromEntity(Occurrence entity,
                                                    List<OccurrenceTypeDTO> occurrenceTypesDTO,
                                                    List<AircraftDTO> aircraftDto,
                                                    List<ContributingFactorDTO> contributingFactorsDTO) {
