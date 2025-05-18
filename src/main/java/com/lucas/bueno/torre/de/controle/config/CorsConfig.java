@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+
 @Configuration
 public class CorsConfig {
     @Bean
@@ -14,20 +15,19 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/graphql")
                         .allowedOrigins(
-                                "https://torre-de-controle-front.vercel.app", // Seu frontend
+                                "https://torre-de-controle-front.vercel.app",
                                 "http://localhost:3000",
-                                "http://localhost:8081"// Ou outra porta do frontend
+                                "http://localhost:8081"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
 
-                registry.addMapping("/graphiql") // Bloqueia /graphiql
+                registry.addMapping("/graphiql")
                         .allowedOrigins()
                         .allowedMethods()
-                        .maxAge(0);// Permite cookies/sessões
+                        .maxAge(0);
             }
-
         };
     }
 }
